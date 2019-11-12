@@ -23,7 +23,8 @@ namespace SentenceGen.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult DisplayWord(FormModel model)
         {
-            return Content($"Hello {model.FirstName}");
+            //This returns does not do anything
+            return Content($"Hello {model.Title_}");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
