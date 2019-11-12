@@ -8,5 +8,6 @@ namespace SentenceGen.Models
     public class FormModel
     {
         public string Title_ { get; set; }
+        public string Word { get; set; }
     }
 }

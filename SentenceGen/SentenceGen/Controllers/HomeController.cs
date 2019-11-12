@@ -24,6 +24,13 @@ namespace SentenceGen.Controllers
         public IActionResult DisplayWord(FormModel model)
         {
             //This returns does not do anything
+
+            //Send shrek to db
+            var startingWord = model.Title_;
+
+            //Wait for database response
+            var dictionary = _contextCallDatabase;
+            //Call IAction function and pass (Dictionary, startingword)
             return Content($"Hello {model.Title_}");
         }
 
