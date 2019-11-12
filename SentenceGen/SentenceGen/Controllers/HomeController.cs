@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SentenceGen.Models;
+using SentenceGen.Services;
 
 namespace SentenceGen.Controllers
 {
@@ -23,15 +24,20 @@ namespace SentenceGen.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult DisplayWord(FormModel model)
         {
-            //This returns does not do anything
-
-            //Send shrek to db
-            var startingWord = model.Title_;
+            var trigramService = new TrigramService();
+            //TESTING DATA
+            string fileName = model.Title_;
+            string text = System.IO.File.ReadAllText(@"wwwroot/titles/"+fileName);
+            var dictionary = trigramService.getTrigramsDictionary(text);
+            var startingWord = model.Word;
+            ////////////////////////////
 
             //Wait for database response
-            var dictionary = _contextCallDatabase;
-            //Call IAction function and pass (Dictionary, startingword)
-            return Content($"Hello {model.Title_}");
+            //var dictionary = _contextCallDatabase;
+
+            var sentence = trigramService.CreateSentenceFromTrigram(dictionary, startingWord);
+            ViewBag.Sentence = sentence;
+            return View("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
