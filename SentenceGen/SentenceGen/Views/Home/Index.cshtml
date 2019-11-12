@@ -1,11 +1,15 @@
-﻿@{
+﻿@model SentenceGen.Models.FormModel
+
+@{
     ViewData["Title"] = "Home Page";
+
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to our fabulous program</h1>
-   <form  method="get">
-       Name: <input type="text" name="testN" />
-       <input type="submit" value="Submit!" />
-   </form>
+    <form asp-action="DisplayWord" asp-controller="HomeController">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" placeholder="Your name goes here" />
+        <input type="submit" />
+    </form>
 </div>

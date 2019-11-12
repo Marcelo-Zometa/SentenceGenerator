@@ -20,6 +20,12 @@ namespace SentenceGen.Controllers
             return View();
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult DisplayWord(FormModel model)
+        {
+            return Content($"Hello {model.FirstName}");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
